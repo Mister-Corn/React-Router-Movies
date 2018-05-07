@@ -12,21 +12,29 @@ export default class App extends Component {
     };
   }
 
- 
- addToSavedList = movie => {
+  addToSavedList = movie => {
     const savedList = this.state.savedList;
     savedList.push(movie);
     this.setState({ savedList });
   };
+
+  renderMovieComp = (props) => {
+    /* From ddillert @ https://github.com/ReactTraining/react-router/issues/4105 */
+    return (
+      <Movie save={this.addToSavedList} {...props} />
+    );
+  }
+
   render() {
     return (
       <div>
         <SavedList list={this.state.savedList} />
-        {/* <div>Replace this Div with your Routes</div> */}
-        <Route exact path="/" component={MovieList} />
-        {/* <Route path="/movies/:id" component={Movie} /> */}
-        {/* <Route path="/movies/:id" component={Movie} save={this.addToSavedList} /> */}
-        <Route path="/movies/:id" render={(props) => <Movie routeProp={props} save={this.addToSavedList} /> } />
+        <div>
+          {/* Replace this Div with your Routes */}
+          <Route exact path="/" component={MovieList} />
+          {/* <Route path="/movies/:id" component={Movie} /> */}
+          <Route path="/movies/:id" render={this.renderMovieComp} />
+        </div>
       </div>
     );
   }

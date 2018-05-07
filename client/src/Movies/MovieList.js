@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import MovieCard from './MovieCard';
+import axios from 'axios';
 
 export default class MovieList extends Component {
   constructor(props) {
@@ -34,9 +34,10 @@ export default class MovieList extends Component {
 }
 
 function MovieDetails({ movie }) {
+  // const { title, director, metascore, stars } = movie;
   return (
-    <Link to={`/movies/${movie.id}`}>
-      <MovieCard movie={movie} />
+    <Link className="link no-underline dim black" to={`/movies/${movie.id}`}>
+      <MovieCard movie={movie} /> 
     </Link>
   );
 }
